@@ -2,13 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Infantry extends Parameter {
-    boolean life;
-    int countArrows;
-
-    public Infantry(Coordinates coordinates) {
-        super(coordinates, 2);
-        this.life = true;
-        this.countArrows = 5;
+    public Infantry(String name,Coordinates coordinates,Boolean Health,Integer Arrows){
+        super(name,coordinates,1,Health,Arrows);
 
     }
 
@@ -28,7 +23,8 @@ public class Infantry extends Parameter {
     }
 
     public void step(Teams teams ,Infantry inf ) {
-        if (life == true || countArrows > 0) {
+
+        if (inf.getHealth() == true || inf.getArrows() > 0) {
             Coordinates c = Search_opponent1(teams);
             int X = inf.coordinates.getX();
             int Y = inf.coordinates.getY();
@@ -57,4 +53,9 @@ public class Infantry extends Parameter {
         }
     }
 
+    @Override
+    public String getInfo() {
+        String s = name+"Координаты :"+coordinates+"жив"+getHealth()+"количество стрел"+getArrows();
+        return s;
+    }
 }

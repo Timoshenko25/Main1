@@ -1,9 +1,16 @@
+import java.util.ArrayList;
+
 public class Peasant extends Parameter{
-    public Peasant (Coordinates coordinates){
-        super(coordinates,0);
+    public Peasant (String name,Coordinates coordinates,Boolean Health,Integer Arrows){
+        super(name,coordinates,1,Health,Arrows);
 
     }
-    public void step(){
+    public void step(ArrayList<Parameter> darkTeam, ArrayList<Parameter> holyTeam){
 
+    }
+    @Override
+    public String getInfo() {
+        String s = "Name"+name+"Координаты :"+coordinates+"жив"+getHealth()+"количество стрел"+getArrows();
+        return s;
     }
 }

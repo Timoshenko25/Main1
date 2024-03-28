@@ -2,12 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public  class Sniper extends Parameter{
-    boolean life;
-    int countArrows;
-    public Sniper (Coordinates coordinates){
-        super(coordinates,3);
-        this.life= true;
-        this.countArrows=5;
+    public Sniper (String name,Coordinates coordinates,Boolean Health,Integer Arrows){
+        super(name,coordinates,1,Health,Arrows);
+
 
     }
     public Coordinates Search_opponent(Teams teams){
@@ -25,7 +22,7 @@ public  class Sniper extends Parameter{
         return Coordinates1;
     }
     public void step(Teams teams) {
-        if (life == true || countArrows > 0) {
+        if (Health == true || Arrows > 0) {
             Coordinates c = Search_opponent(teams);
             List<Parameter> toRemove = new ArrayList<>();
 
@@ -41,7 +38,12 @@ public  class Sniper extends Parameter{
             }
 
             System.out.println("Лучник атакует ближайшего противника");
-            countArrows--;
+            Arrows--;
         }
+    }
+    @Override
+    public String getInfo() {
+        String s = name+"Координаты :"+coordinates+"жив"+getHealth()+"количество стрел"+getArrows();
+        return s;
     }
 }
